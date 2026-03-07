@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MathPath</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>MathPath</h1>
+<p>Adaptive Learning for Mathematics</p>
+</header>
+
+<div class="container">
+
+<section id="start">
+<h2>Diagnostic Pretest</h2>
+<p>Take this quick test to determine your strengths and weaknesses.</p>
+<button onclick="startTest()">Start Test</button>
+</section>
+
+<section id="test" class="hidden">
+<h2>Question</h2>
+<p id="question"></p>
+
+<input type="number" id="answer" placeholder="Your answer">
+<button onclick="submitAnswer()">Submit</button>
+
+<p id="feedback"></p>
+</section>
+
+<section id="learningPath" class="hidden">
+<h2>Your Learning Path</h2>
+<ul id="topics"></ul>
+<button onclick="startPractice()">Start Practice</button>
+</section>
+
+<section id="practice" class="hidden">
+<h2>Practice Problem</h2>
+<p id="practiceQuestion"></p>
+
+<input type="number" id="practiceAnswer">
+<button onclick="checkPractice()">Submit</button>
+
+<p id="practiceFeedback"></p>
+</section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
