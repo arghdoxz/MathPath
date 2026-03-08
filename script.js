@@ -595,3 +595,58 @@ wrongStreak=0
 }
 
 }
+
+// =============================
+// CALCULATOR FUNCTIONS
+// =============================
+
+function insertCalc(value){
+
+let input = document.getElementById("calcInput")
+
+input.value += value
+
+}
+
+function clearCalc(){
+
+document.getElementById("calcInput").value = ""
+document.getElementById("calcResult").innerText = ""
+
+}
+
+function calculate(){
+
+let expression = document.getElementById("calcInput").value
+
+try{
+
+expression = expression
+.replace(/sin\(/g,"Math.sin(toRad(")
+.replace(/cos\(/g,"Math.cos(toRad(")
+.replace(/tan\(/g,"Math.tan(toRad(")
+.replace(/asin\(/g,"toDeg(Math.asin(")
+.replace(/acos\(/g,"toDeg(Math.acos(")
+.replace(/atan\(/g,"toDeg(Math.atan(")
+.replace(/sqrt\(/g,"Math.sqrt(")
+.replace(/\^/g,"**")
+
+let result = eval(expression)
+
+document.getElementById("calcResult").innerText = "Result: " + result
+
+}catch{
+
+document.getElementById("calcResult").innerText = "Invalid Expression"
+
+}
+
+}
+
+function toRad(angle){
+return angle * (Math.PI / 180)
+}
+
+function toDeg(angle){
+return angle * (180 / Math.PI)
+}
