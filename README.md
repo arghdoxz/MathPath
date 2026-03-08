@@ -85,23 +85,15 @@ MathPath aims to make math practice more adaptive, engaging, and personalized fo
 
 ## Technology Stack
 
-*(Example stack — adjust based on your implementation)*
-
 Frontend:
 - HTML
 - CSS
 - JavaScript
 
-Backend:
-- Node.js
-- Express.js
-
 AI / Logic:
 - Algorithmic problem generation
 - Performance tracking and adaptive difficulty
 
-Database:
-- PostgreSQL (Render)
 
 Hosting:
 - Render Web Services
