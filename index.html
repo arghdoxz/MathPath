@@ -12,20 +12,67 @@
 <h1>MathPath</h1>
 <p>Adaptive Learning for Mathematics</p>
 </header>
+<section id="masteryDashboard">
 
+<h2>Mastery Progress</h2>
+
+<div class="mastery-item">
+<p>PEMDAS: <span id="pemdasPercent">0%</span></p>
+<div class="progress-bar">
+<div id="pemdasBar" class="progress-fill"></div>
+</div>
+</div>
+
+<div class="mastery-item">
+<p>Algebra: <span id="algebraPercent">0%</span></p>
+<div class="progress-bar">
+<div id="algebraBar" class="progress-fill"></div>
+</div>
+</div>
+
+<div class="mastery-item">
+<p>Geometry: <span id="geometryPercent">0%</span></p>
+<div class="progress-bar">
+<div id="geometryBar" class="progress-fill"></div>
+</div>
+</div>
+
+</section>
 <div class="container">
+<section id="landing">
+<h2>Welcome to MathPath</h2>
 
+<p>
+MathPath is an adaptive mathematics learning system that identifies your
+strengths and weaknesses, then builds a personalized learning path.
+</p>
+
+<p>
+Progress is based on <b>mastery</b>, not the number of questions answered.
+Each correct answer increases mastery and each incorrect answer decreases it.
+</p>
+
+<div class="score-box">
+<p><b>Mastery Rules</b></p>
+<ul>
+<li>Correct answer → +10% mastery</li>
+<li>Wrong answer → −5% mastery</li>
+<li>90–100% mastery = topic mastered</li>
+</ul>
+</div>
+
+<button onclick="startTest()">Start Diagnostic Test</button>
+</section>
 <section id="start">
 <h2>Diagnostic Pretest</h2>
 <p>Take this quick test to determine your strengths and weaknesses.</p>
-<button onclick="startTest()">Start Test</button>
 </section>
 
 <section id="test" class="hidden">
 <h2>Question</h2>
 <p id="question"></p>
 
-<input type="number" id="answer" placeholder="Your answer">
+<input type="text" id="answer" placeholder="Your answer">
 <button onclick="submitAnswer()">Submit</button>
 
 <p id="feedback"></p>
@@ -34,6 +81,26 @@
 <section id="learningPath" class="hidden">
 <h2>Your Learning Path</h2>
 <ul id="topics"></ul>
+<h3>Topic Mastery</h3>
+
+<div class="progress-container">
+
+<p>PEMDAS</p>
+<div class="progress-bar">
+<div id="pemdasBar" class="progress-fill"></div>
+</div>
+
+<p>Algebra</p>
+<div class="progress-bar">
+<div id="algebraBar" class="progress-fill"></div>
+</div>
+
+<p>Geometry</p>
+<div class="progress-bar">
+<div id="geometryBar" class="progress-fill"></div>
+</div>
+
+</div>
 <button onclick="startPractice()">Start Practice</button>
 </section>
 

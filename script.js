@@ -26,7 +26,46 @@ let currentAnswer = 0
 let difficulty = "medium"
 let correctStreak = 0
 let wrongStreak = 0
+// =============================
+// MASTERY SYSTEM
+// =============================
 
+let mastery = {
+pemdas:0,
+algebra:0,
+geometry:0
+}
+
+function updateMastery(topic,correct){
+
+if(correct){
+
+mastery[topic] += 10
+
+}else{
+
+mastery[topic] -= 5
+
+}
+
+if(mastery[topic] > 100) mastery[topic] = 100
+if(mastery[topic] < 0) mastery[topic] = 0
+
+updateProgressBars()
+
+}
+function updateProgressBars(){
+
+document.getElementById("pemdasBar").style.width =
+mastery.pemdas + "%"
+
+document.getElementById("algebraBar").style.width =
+mastery.algebra + "%"
+
+document.getElementById("geometryBar").style.width =
+mastery.geometry + "%"
+
+}
 
 // =============================
 // QUESTION BANK (Diagnostic)
