@@ -79,29 +79,19 @@ Each correct answer increases mastery and each incorrect answer decreases it.
 </section>
 
 <section id="learningPath" class="hidden">
-<h2>Your Learning Path</h2>
-<ul id="topics"></ul>
-<h3>Topic Mastery</h3>
 
-<div class="progress-container">
+<h2>Choose a Topic to Practice</h2>
 
-<p>PEMDAS</p>
-<div class="progress-bar">
-<div id="pemdasBar" class="progress-fill"></div>
-</div>
+<p>Select which topic you want to begin practicing.</p>
 
-<p>Algebra</p>
-<div class="progress-bar">
-<div id="algebraBar" class="progress-fill"></div>
-</div>
+<div class="topic-buttons">
 
-<p>Geometry</p>
-<div class="progress-bar">
-<div id="geometryBar" class="progress-fill"></div>
-</div>
+<button onclick="selectTopic('pemdas')">PEMDAS</button>
+<button onclick="selectTopic('algebra')">Algebra</button>
+<button onclick="selectTopic('geometry')">Geometry</button>
 
 </div>
-<button onclick="startPractice()">Start Practice</button>
+
 </section>
 
 <section id="practice" class="hidden">

@@ -232,15 +232,26 @@ function finishDiagnostic(){
 document.getElementById("test").classList.add("hidden")
 document.getElementById("learningPath").classList.remove("hidden")
 
-weakestTopic=Object.keys(categoryScores).reduce((a,b)=>
-categoryScores[a]<categoryScores[b]?a:b
-)
-
-document.getElementById("topics").innerHTML=
-`<li>Your learning path will focus on: <b>${weakestTopic}</b></li>`
-
 }
 
+// =============================
+// USER SELECT TOPIC
+// =============================
+
+function selectTopic(topic){
+
+weakestTopic = topic
+
+document.getElementById("learningPath").classList.add("hidden")
+document.getElementById("practice").classList.remove("hidden")
+
+practiceQuestions=[generateProblem(weakestTopic,difficulty)]
+
+practiceIndex=0
+
+showPractice()
+
+}
 
 // =============================
 // START PRACTICE
