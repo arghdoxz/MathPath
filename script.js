@@ -689,3 +689,31 @@ return angle * (Math.PI / 180)
 function toDeg(angle){
 return angle * (180 / Math.PI)
 }
+// =============================
+// RESTART POST TEST
+// =============================
+function restartPostTest(){
+
+postIndex = 0
+postTestScore = 0
+
+generatePostTest()
+
+document.getElementById("results").classList.add("hidden")
+document.getElementById("postTest").classList.remove("hidden")
+
+showPostQuestion()
+
+}
+
+function updateProgressBars(){
+
+document.getElementById("pemdasBar").style.width = mastery.pemdas + "%"
+document.getElementById("algebraBar").style.width = mastery.algebra + "%"
+document.getElementById("geometryBar").style.width = mastery.geometry + "%"
+
+document.getElementById("pemdasPercent").innerText = mastery.pemdas + "%"
+document.getElementById("algebraPercent").innerText = mastery.algebra + "%"
+document.getElementById("geometryPercent").innerText = mastery.geometry + "%"
+
+}
