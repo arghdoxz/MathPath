@@ -1,55 +1,178 @@
+/* ===== Global Styles ===== */
+
 body{
-font-family: Arial, sans-serif;
-background:#f4f6f9;
+font-family: "Segoe UI", Arial, sans-serif;
+background: linear-gradient(135deg,#eef2f7,#dce6f2);
 margin:0;
 padding:0;
+color:#2c3e50;
 }
+
+/* ===== Header ===== */
 
 header{
-background:#2c3e50;
+background: linear-gradient(90deg,#2c3e50,#34495e);
 color:white;
-padding:20px;
+padding:25px;
 text-align:center;
+font-size:22px;
+letter-spacing:1px;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
 }
 
+/* ===== Main Container ===== */
+
 .container{
-max-width:800px;
+max-width:900px;
 margin:auto;
-padding:20px;
+padding:25px;
 }
+
+/* ===== Sections / Cards ===== */
 
 section{
 background:white;
-padding:20px;
-margin-bottom:20px;
-border-radius:8px;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+transition:transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+section:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* ===== Headings ===== */
+
+h2{
+margin-top:0;
+color:#34495e;
+}
+
+/* ===== Question Text ===== */
+
+#question,
+#practiceQuestion,
+#postQuestion{
+font-size:20px;
+margin:15px 0;
+font-weight:600;
+}
+
+/* ===== Inputs ===== */
+
+input{
+padding:10px;
+margin-top:10px;
+margin-bottom:10px;
+border-radius:6px;
+border:1px solid #d0d7de;
+width:100%;
+max-width:200px;
+font-size:16px;
+}
+
+input:focus{
+outline:none;
+border-color:#3498db;
+box-shadow:0 0 5px rgba(52,152,219,0.4);
+}
+
+/* ===== Buttons ===== */
+
 button{
-padding:10px 15px;
+padding:10px 18px;
 border:none;
-background:#3498db;
+background:linear-gradient(135deg,#3498db,#2980b9);
 color:white;
 cursor:pointer;
-border-radius:5px;
+border-radius:6px;
+font-size:15px;
+font-weight:600;
+transition:all 0.2s ease;
 }
 
 button:hover{
-background:#2980b9;
+transform:translateY(-1px);
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
-input{
-padding:8px;
-margin-top:10px;
-margin-bottom:10px;
+button:active{
+transform:scale(0.97);
 }
+
+/* ===== Feedback Messages ===== */
+
+#feedback,
+#practiceFeedback,
+#postFeedback{
+font-weight:bold;
+margin-top:10px;
+font-size:16px;
+}
+
+/* Correct / Incorrect Colors */
+
+.correct{
+color:#27ae60;
+}
+
+.incorrect{
+color:#e74c3c;
+}
+
+/* ===== Results Section ===== */
+
+#results p{
+font-size:18px;
+margin:10px 0;
+font-weight:600;
+}
+
+#improvement{
+font-size:22px;
+color:#2ecc71;
+}
+
+/* ===== Hidden Elements ===== */
 
 .hidden{
 display:none;
 }
 
-#feedback, #practiceFeedback{
-font-weight:bold;
+/* ===== Progress / Score Box ===== */
+
+.score-box{
+background:#f8fbff;
+border-left:5px solid #3498db;
+padding:15px;
+margin-top:15px;
+border-radius:6px;
+}
+
+/* ===== Mobile Friendly ===== */
+
+@media (max-width:600px){
+
+.container{
+padding:15px;
+}
+
+section{
+padding:18px;
+}
+
+#question,
+#practiceQuestion,
+#postQuestion{
+font-size:18px;
+}
+
+button{
+width:100%;
 margin-top:10px;
+}
+
 }
