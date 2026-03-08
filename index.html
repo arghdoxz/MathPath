@@ -74,6 +74,54 @@
 <p id="improvement"></p>
 
 </section>
+<section id="calculator">
+<h2>MathPath Calculator</h2>
+<p>Quick scientific calculator for solving expressions.</p>
+
+<input type="text" id="calcInput" readonly>
+
+<div class="calc-buttons">
+
+<button onclick="insertCalc('7')">7</button>
+<button onclick="insertCalc('8')">8</button>
+<button onclick="insertCalc('9')">9</button>
+<button onclick="insertCalc('/')">÷</button>
+
+<button onclick="insertCalc('4')">4</button>
+<button onclick="insertCalc('5')">5</button>
+<button onclick="insertCalc('6')">6</button>
+<button onclick="insertCalc('*')">×</button>
+
+<button onclick="insertCalc('1')">1</button>
+<button onclick="insertCalc('2')">2</button>
+<button onclick="insertCalc('3')">3</button>
+<button onclick="insertCalc('-')">−</button>
+
+<button onclick="insertCalc('0')">0</button>
+<button onclick="insertCalc('.')">.</button>
+<button onclick="insertCalc('+')">+</button>
+<button onclick="calculate()">=</button>
+
+<button onclick="insertCalc('sin(')">sin</button>
+<button onclick="insertCalc('cos(')">cos</button>
+<button onclick="insertCalc('tan(')">tan</button>
+<button onclick="insertCalc('^')">^</button>
+
+<button onclick="insertCalc('asin(')">asin</button>
+<button onclick="insertCalc('acos(')">acos</button>
+<button onclick="insertCalc('atan(')">atan</button>
+<button onclick="insertCalc('sqrt(')">√</button>
+
+<button onclick="insertCalc('(')">(</button>
+<button onclick="insertCalc(')')">)</button>
+<button onclick="insertCalc('Math.PI')">π</button>
+<button onclick="clearCalc()">C</button>
+
+</div>
+
+<p id="calcResult"></p>
+
+</section>
 </div>
 
 <script src="script.js"></script>
