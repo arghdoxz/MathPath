@@ -462,7 +462,15 @@ return questions
 // =============================
 
 function showPractice(){
-document.getElementById("difficultyDisplay").innerText = difficulty
+
+let stars = ""
+
+if(difficulty==="easy") stars="⭐"
+if(difficulty==="medium") stars="⭐⭐"
+if(difficulty==="hard") stars="⭐⭐⭐"
+
+document.getElementById("difficultyDisplay").innerText = stars
+
 let problem=practiceQuestions[practiceIndex]
 
 currentAnswer=problem.answer
