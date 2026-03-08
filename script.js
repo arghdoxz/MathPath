@@ -488,11 +488,15 @@ document.getElementById("practiceFeedback").innerText="Correct!"
 correctStreak++
 wrongStreak=0
 
+updateMastery(weakestTopic,true)
+
 }else{
 
 document.getElementById("practiceFeedback").innerText="Incorrect"
 wrongStreak++
 correctStreak=0
+
+updateMastery(weakestTopic,false)
 
 }
 
@@ -500,19 +504,28 @@ updateDifficulty()
 
 practiceIndex++
 
-if(practiceIndex<practiceQuestions.length){
+if(mastery[weakestTopic] >= 90){
+
+document.getElementById("practiceQuestion").innerText =
+"🎉 You mastered this topic!"
+
+document.getElementById("postTestStart").classList.remove("hidden")
+
+return
+
+}
 
 setTimeout(()=>{
 document.getElementById("practiceAnswer").value=""
 document.getElementById("practiceFeedback").innerText=""
+
+practiceQuestions=[generateProblem(weakestTopic,difficulty)]
+
+practiceIndex=0
+
 showPractice()
+
 },800)
-
-}else{
-
-document.getElementById("practiceQuestion").innerText="Practice complete!"
-document.getElementById("postTestStart").classList.remove("hidden")
-}
 
 }
 // =============================
