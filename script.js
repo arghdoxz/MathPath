@@ -22,6 +22,12 @@ let practiceQuestions = []
 let practiceIndex = 0
 let currentAnswer = 0
 
+// EXTRA PRACTICE VARIABLES
+
+let extraQuestions=[]
+let extraIndex=0
+let extraTopic=""
+
 // adaptive difficulty variables
 let difficulty = "medium"
 let correctStreak = 0
@@ -792,5 +798,68 @@ function insertFraction(){
 let input = document.getElementById("calcInput")
 
 input.value += "( )/( )"
+
+}
+
+function startExtraPractice(topic){
+
+extraTopic = topic
+extraQuestions = []
+extraIndex = 0
+
+// generate 5 questions
+for(let i=0;i<5;i++){
+extraQuestions.push(generateProblem(topic,"medium"))
+}
+
+document.getElementById("extraPracticeArea").classList.remove("hidden")
+
+document.getElementById("extraTopicTitle").innerText =
+"Topic: " + topic.toUpperCase()
+
+showExtraQuestion()
+
+}
+
+function startExtraPractice(topic){
+
+extraTopic = topic
+extraQuestions = []
+extraIndex = 0
+
+// generate 5 questions
+for(let i=0;i<5;i++){
+extraQuestions.push(generateProblem(topic,"medium"))
+}
+
+document.getElementById("extraPracticeArea").classList.remove("hidden")
+
+document.getElementById("extraTopicTitle").innerText =
+"Topic: " + topic.toUpperCase()
+
+showExtraQuestion()
+
+}
+
+function submitExtraAnswer(){
+
+let userAnswer = document.getElementById("extraAnswer").value
+
+let correctAnswer = extraQuestions[extraIndex].answer
+
+if(userAnswer == correctAnswer){
+
+document.getElementById("extraFeedback").innerText = "Correct!"
+
+}else{
+
+document.getElementById("extraFeedback").innerText =
+"Incorrect. Answer: " + correctAnswer
+
+}
+
+extraIndex++
+
+setTimeout(showExtraQuestion,800)
 
 }

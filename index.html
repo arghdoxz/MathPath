@@ -131,6 +131,32 @@ Each correct answer increases mastery and each incorrect answer decreases it.
 <p id="improvement"></p>
 <button onclick="restartPostTest()">Retake Post-Test</button>
 </section>
+<section id="extraPracticeSection">
+
+<h2>Extra Practice</h2>
+<p>This section is only for additional practice. It will not affect your tests or mastery.</p>
+
+<div class="topic-buttons">
+<button onclick="startExtraPractice('pemdas')">PEMDAS</button>
+<button onclick="startExtraPractice('algebra')">Algebra</button>
+<button onclick="startExtraPractice('geometry')">Geometry</button>
+</div>
+
+<div id="extraPracticeArea" class="hidden">
+
+<h3 id="extraTopicTitle"></h3>
+
+<p id="extraQuestion"></p>
+
+<input type="text" id="extraAnswer">
+
+<button onclick="submitExtraAnswer()">Submit</button>
+
+<p id="extraFeedback"></p>
+
+</div>
+
+</section>
 <section id="calculator">
 <h2>MathPath Calculator</h2>
 <p>Quick scientific calculator for solving expressions.</p>
