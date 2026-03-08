@@ -479,7 +479,6 @@ document.getElementById("practiceQuestion").innerText=problem.question
 
 }
 
-
 // =============================
 // CHECK PRACTICE ANSWER
 // =============================
