@@ -94,9 +94,18 @@ function goToPractice(topic) {
   updatePracticeMeta()
   nextQ()
   showScreen('screen-practice')
-  // On mobile, hide calc by default
-  if (window.innerWidth < 768) hideCalc()
-  else showCalcPanel()
+  
+  // Calculator only visible for algebra and geometry, not arithmetic
+  const calcTog = document.getElementById('calc-tog')
+  if (topic === 'arithmetic') {
+    hideCalc()
+    if (calcTog) calcTog.style.display = 'none'
+  } else {
+    if (calcTog) calcTog.style.display = 'block'
+    // On mobile, hide calc by default; on desktop show it
+    if (window.innerWidth < 768) hideCalc()
+    else showCalcPanel()
+  }
 }
 
 function updatePracticeMeta() {
@@ -126,6 +135,7 @@ function nextQ() {
   document.getElementById('prac-q').textContent = prob.question
   document.getElementById('prac-inp').value = ''
   setFeedback('prac-fb', '', '')
+  clearWork()
   document.getElementById('prac-inp').focus()
 }
 
@@ -136,9 +146,22 @@ function submitPractice() {
 
   setFeedback('prac-fb', ok ? '✓  Correct!' : '✗  Answer: ' + currentAnswer, ok ? 'correct' : 'incorrect')
 
-  mastery[t] = ok ? Math.min(100, mastery[t] + 10) : Math.max(0, mastery[t] - 5)
+  // Update mastery based on correct/wrong and streak bonus
+  if (ok) {
+    // Determine streak bonus: 1st correct +4%, 2nd +8%, 3rd+ +10%
+    let masteryGain = 2 // base gain
+    if (streak[t].c === 0) masteryGain += 2 // 1st correct: +4% total
+    else if (streak[t].c === 1) masteryGain += 6 // 2nd correct: +8% total
+    else masteryGain += 8 // 3rd+ correct: +10% total
+    mastery[t] = Math.min(100, mastery[t] + masteryGain)
+    streak[t].c++
+    streak[t].w = 0
+  } else {
+    mastery[t] = Math.max(0, mastery[t] - 1)
+    streak[t].w++
+    streak[t].c = 0
+  }
 
-  if (ok) { streak[t].c++; streak[t].w = 0 } else { streak[t].w++; streak[t].c = 0 }
   if (streak[t].c >= 3) {
     if (diff[t] === 'easy') diff[t] = 'medium'
     else if (diff[t] === 'medium') diff[t] = 'hard'
