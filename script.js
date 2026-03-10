@@ -136,6 +136,7 @@ function nextQ() {
   document.getElementById('prac-inp').value = ''
   setFeedback('prac-fb', '', '')
   clearWork()
+  toggleSolutionMode('text')
   document.getElementById('prac-inp').focus()
 }
 
@@ -216,6 +217,101 @@ function setFeedback(id, msg, cls) {
 function clearWork() {
   const workArea = document.getElementById('work-area')
   if (workArea) workArea.value = ''
+  
+  const canvas = document.getElementById('draw-canvas')
+  if (canvas) {
+    const ctx = canvas.getContext('2d')
+    ctx.fillStyle = 'white'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+  }
+}
+
+let isDrawing = false
+let lastX = 0
+let lastY = 0
+
+function initCanvas() {
+  const canvas = document.getElementById('draw-canvas')
+  if (!canvas) return
+  
+  const rect = canvas.parentElement.getBoundingClientRect()
+  canvas.width = rect.width
+  canvas.height = rect.height
+  
+  const ctx = canvas.getContext('2d')
+  ctx.fillStyle = 'white'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  
+  canvas.addEventListener('mousedown', startDraw)
+  canvas.addEventListener('mousemove', draw)
+  canvas.addEventListener('mouseup', stopDraw)
+  canvas.addEventListener('mouseleave', stopDraw)
+  canvas.addEventListener('touchstart', handleTouch)
+  canvas.addEventListener('touchmove', handleTouch)
+  canvas.addEventListener('touchend', stopDraw)
+}
+
+function startDraw(e) {
+  isDrawing = true
+  const canvas = document.getElementById('draw-canvas')
+  const rect = canvas.getBoundingClientRect()
+  lastX = e.clientX - rect.left
+  lastY = e.clientY - rect.top
+}
+
+function draw(e) {
+  if (!isDrawing) return
+  
+  const canvas = document.getElementById('draw-canvas')
+  const rect = canvas.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  
+  const ctx = canvas.getContext('2d')
+  ctx.strokeStyle = '#000'
+  ctx.lineWidth = 2
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+  ctx.beginPath()
+  ctx.moveTo(lastX, lastY)
+  ctx.lineTo(x, y)
+  ctx.stroke()
+  
+  lastX = x
+  lastY = y
+}
+
+function stopDraw() {
+  isDrawing = false
+}
+
+function handleTouch(e) {
+  const touch = e.touches[0]
+  const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : 'mousemove', {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  })
+  document.getElementById('draw-canvas').dispatchEvent(mouseEvent)
+}
+
+function toggleSolutionMode(mode) {
+  const textContainer = document.getElementById('text-container')
+  const canvasContainer = document.getElementById('canvas-container')
+  const btnText = document.getElementById('btn-text-mode')
+  const btnDraw = document.getElementById('btn-draw-mode')
+  
+  if (mode === 'text') {
+    textContainer.classList.add('active-mode')
+    canvasContainer.classList.remove('active-mode')
+    btnText.classList.add('active')
+    btnDraw.classList.remove('active')
+  } else if (mode === 'draw') {
+    textContainer.classList.remove('active-mode')
+    canvasContainer.classList.add('active-mode')
+    btnText.classList.remove('active')
+    btnDraw.classList.add('active')
+    setTimeout(() => initCanvas(), 50)
+  }
 }
 
 // ===========================

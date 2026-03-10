@@ -162,9 +162,18 @@
       <div class="solution-panel">
         <div class="solution-header">
           <span class="solution-label">Solution Sheet</span>
+          <div class="mode-toggles">
+            <button id="btn-text-mode" class="btn-mode active" onclick="toggleSolutionMode('text')">Text</button>
+            <button id="btn-draw-mode" class="btn-mode" onclick="toggleSolutionMode('draw')">Draw</button>
+          </div>
           <button class="btn-clear-work" onclick="clearWork()">Clear</button>
         </div>
-        <textarea id="work-area" class="work-area" placeholder="Write your work and calculations here..."></textarea>
+        <div id="text-container" class="work-container active-mode">
+          <textarea id="work-area" class="work-area" placeholder="Write your work and calculations here..."></textarea>
+        </div>
+        <div id="canvas-container" class="canvas-container">
+          <canvas id="draw-canvas" class="draw-canvas"></canvas>
+        </div>
       </div>
 
       <!-- CALCULATOR PANEL -->
