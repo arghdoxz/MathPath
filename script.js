@@ -51,7 +51,7 @@ function startDiagnostic() {
   const bank = getBank()
   diagScores = { arithmetic: 0, algebra: 0, geometry: 0 }
   diagIdx = 0
-  const sets = TOPICS.map(t => shuffle([...bank[t]]).slice(0, 5).map(q => ({ ...q, topic: t })))
+  const sets = TOPICS.map(t => shuffle([...bank[t]]).slice(0, 16).map(q => ({ ...q, topic: t })))
   diagQs = shuffle(sets.flat())
   showScreen('screen-diag')
   renderDiagQ()
@@ -80,7 +80,7 @@ function submitDiag() {
 
 function finishDiag() {
   hasDiag = true
-  TOPICS.forEach(t => { mastery[t] = Math.round((diagScores[t] / 5) * 50) })
+  TOPICS.forEach(t => { mastery[t] = Math.round((diagScores[t] / 16) * 100) })
   goHome()
 }
 
@@ -218,6 +218,16 @@ function getBank() {
       { q: 'Evaluate:   5² + 3 × 4', a: '37' },
       { q: 'Evaluate:   (15 − 5) × 2 + 8 ÷ 4', a: '22' },
       { q: 'Evaluate:   30 ÷ (5 + 1) + 7', a: '12' },
+      { q: 'Evaluate:   2 + 3 × 4', a: '14' },
+      { q: 'Evaluate:   (8 + 4) ÷ 3 + 1', a: '5' },
+      { q: 'Evaluate:   10 − 2 + 5', a: '13' },
+      { q: 'Evaluate:   16 ÷ 2 × 3', a: '24' },
+      { q: 'Evaluate:   9 + 8 ÷ 4 − 2', a: '9' },
+      { q: 'Evaluate:   3² + 4²', a: '25' },
+      { q: 'Evaluate:   (6 + 2) × (5 − 3)', a: '16' },
+      { q: 'Evaluate:   100 ÷ 5 − 10', a: '10' },
+      { q: 'Evaluate:   12 + 18 ÷ 6', a: '15' },
+      { q: 'Evaluate:   15 × 2 ÷ 3 + 5', a: '15' },
     ],
     algebra: [
       { q: 'Solve for x:   x + 7 = 15', a: '8' },
@@ -230,6 +240,16 @@ function getBank() {
       { q: 'Solve for x:   x/3 + 4 = 10', a: '18' },
       { q: 'Expand:   3(x + 5)', a: '3x+15' },
       { q: 'Factor:   x² + 5x', a: 'x(x+5)' },
+      { q: 'Solve for x:   6x = 30', a: '5' },
+      { q: 'Solve for x:   x + 12 = 20', a: '8' },
+      { q: 'Solve for x:   3x − 7 = 8', a: '5' },
+      { q: 'Evaluate 5x − 2  when x = 3', a: '13' },
+      { q: 'Solve for x:   x/2 + 5 = 12', a: '14' },
+      { q: 'Expand:   2(x − 3)', a: '2x-6' },
+      { q: 'Solve for x:   10x + 5 = 25', a: '2' },
+      { q: 'Factor:   2x² + 8x', a: '2x(x+4)' },
+      { q: 'Evaluate x² + 2x  when x = 3', a: '15' },
+      { q: 'Solve for x:   7 − x = 2', a: '5' },
     ],
     geometry: [
       { q: 'Perimeter of a rectangle:   length = 8,  width = 5', a: '26' },
@@ -242,6 +262,16 @@ function getBank() {
       { q: 'Rectangle:   area = 48,  width = 6.  Find the length.', a: '8' },
       { q: 'Right triangle:   hypotenuse = 13,  one leg = 5.  Find the other leg.', a: '12' },
       { q: 'Triangle:   base = 12,  height = 9.  Find the area.', a: '54' },
+      { q: 'Perimeter of a square with side 7', a: '28' },
+      { q: 'Area of a rectangle with length 12 and width 4', a: '48' },
+      { q: 'Circumference of a circle with diameter 10  (π = 3.14)', a: '31.4' },
+      { q: 'A triangle has angles of 45° and 45°.  Find the third angle.', a: '90' },
+      { q: 'Area of a triangle with base 8 and height 6', a: '24' },
+      { q: 'Right triangle legs: 3 and 4.  Find the hypotenuse.', a: '5' },
+      { q: 'Area of a circle with radius 3  (π = 3.14)', a: '28.26' },
+      { q: 'Perimeter of a rectangle with length 10 and width 3', a: '26' },
+      { q: 'Right triangle:   hypotenuse = 10,  one leg = 6.  Find the other leg.', a: '8' },
+      { q: 'A triangle has angles of 30° and 70°.  Find the third angle.', a: '80' },
     ]
   }
 }
