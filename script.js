@@ -190,6 +190,11 @@ function setFeedback(id, msg, cls) {
   el.className = 'feedback' + (cls ? ' ' + cls : '')
 }
 
+function clearWork() {
+  const workArea = document.getElementById('work-area')
+  if (workArea) workArea.value = ''
+}
+
 // ===========================
 // UTILS
 // ===========================

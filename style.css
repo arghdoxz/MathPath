@@ -442,6 +442,75 @@ body {
   overflow: hidden;
 }
 
+/* Solution Sheet Panel */
+.solution-panel {
+  width: 300px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.solution-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.solution-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text3);
+}
+
+.btn-clear-work {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-clear-work:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.btn-clear-work:active {
+  transform: scale(0.95);
+}
+
+.work-area {
+  flex: 1;
+  background: var(--bg);
+  border: none;
+  color: var(--text);
+  padding: 0.75rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  border-top: 1px solid var(--border);
+}
+
+.work-area::placeholder {
+  color: var(--text3);
+}
+
 /* ===================== QUESTION CARDS ===================== */
 .question-card {
   background: var(--surface);
@@ -656,6 +725,20 @@ body {
     justify-content: flex-start;
   }
 
+  /* Solution sheet goes full width above calculator on mobile */
+  .solution-panel {
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    max-height: 200px;
+  }
+
+  .work-area {
+    max-height: 160px;
+  }
+
   /* Calculator slides in from bottom on mobile */
   .calc-panel {
     width: 100%;
@@ -694,5 +777,6 @@ body {
 @media (min-width: 768px) and (max-width: 1023px) {
   .topic-grid { grid-template-columns: repeat(3, 1fr); }
   .calc-panel { width: 280px; }
+  .solution-panel { width: 280px; }
   .prac-q-panel { padding: 1.5rem; }
 }
