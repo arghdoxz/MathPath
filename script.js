@@ -422,6 +422,99 @@ function _acos(x) { return Math.acos(x) * 180 / Math.PI }
 function _atan(x) { return Math.atan(x) * 180 / Math.PI }
 
 // ===========================
+// DATA EXPORT / IMPORT
+// ===========================
+function exportData() {
+  const state = {
+    mastery,
+    diff,
+    streak,
+    hasDiag,
+    exportDate: new Date().toISOString()
+  }
+  const json = JSON.stringify(state, null, 2)
+  const blob = new Blob([json], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `mathpath-progress-${new Date().toISOString().split('T')[0]}.json`
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}
+
+function importDataPrompt() {
+  const input = document.createElement('input')
+  input.type = 'file'
+  input.accept = '.json'
+  input.onchange = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = (evt) => {
+      try {
+        const data = JSON.parse(evt.target.result)
+        if (data.mastery && data.diff && data.streak !== undefined) {
+          mastery = data.mastery
+          diff = data.diff
+          streak = data.streak
+          hasDiag = data.hasDiag || false
+          renderDashboard()
+          showNotification('✓ Progress imported successfully!')
+        } else {
+          showNotification('✗ Invalid save file format', true)
+        }
+      } catch {
+        showNotification('✗ Failed to import file', true)
+      }
+    }
+    reader.readAsText(file)
+  }
+  input.click()
+}
+
+function showNotification(msg, isError = false) {
+  const notif = document.createElement('div')
+  notif.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${isError ? 'rgba(255, 107, 107, 0.9)' : 'rgba(0, 212, 170, 0.9)'};
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 10000;
+    font-family: 'DM Sans', sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s ease;
+  `
+  notif.textContent = msg
+  document.body.appendChild(notif)
+  setTimeout(() => {
+    notif.style.animation = 'slideOut 0.3s ease'
+    notif.style.opacity = '0'
+    setTimeout(() => document.body.removeChild(notif), 300)
+  }, 3000)
+}
+
+// Add animations
+const style = document.createElement('style')
+style.textContent = `
+  @keyframes slideIn {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(400px); opacity: 0; }
+  }
+`
+document.head.appendChild(style)
+
+// ===========================
 // KEYBOARD
 // ===========================
 document.addEventListener('keydown', e => {
